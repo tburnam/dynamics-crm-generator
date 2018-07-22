@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Tyler",
+      "authorEmail": "t-tybu@microsoft.com",
+      "authorUrl": "microsoft.com"
+    }
+  }
+}
