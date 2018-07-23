@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(WSRoot)\build\include\XRMSolutions.targets" />
+  <PropertyGroup>
+    <ProjectGuid>{60F0968B-F42E-4165-A4E2-9BF225A81BBA}</ProjectGuid>
+    <!--<ProjectTypeGuids>{4B952A0A-A664-46EC-8D7E-51EBEA2E954D};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>-->
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <NOTARGET>true</NOTARGET>
+    <SolutionProjectNamePrefix>SolutionChecker</SolutionProjectNamePrefix>
+    <SolutionFileNamePrefix>msdyn_SolutionChecker</SolutionFileNamePrefix>
+    <ApplicationFolder>$(WSRoot)\solutions\SolutionChecker</ApplicationFolder>
+    <SolutionFolder>$(ApplicationFolder)\Solution</SolutionFolder>
+    <PluginMapFile>$(ApplicationFolder)\packageMap.xml</PluginMapFile>
+    <SystemConverted>false</SystemConverted>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <ResourceDefinition Include="WebResources.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Other\Customizations.xml" />
+    <Content Include="Other\Relationships.xml" />
+    <Content Include="Other\Solution.xml" />
+  </ItemGroup>
+  <Import Project="$(PKG_XRMAPP_TOOLS)\build\include\NoTarget.targets" />
+  <Import Project="$(PKG_XRMAPP_TOOLS)\build\include\SolutionPackager.targets" />
+  <Import Project="$(WSRoot)\build\include\SolutionVersion.targets" />
+</Project>

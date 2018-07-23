@@ -1,0 +1,40 @@
+<!--
+***********************************************************************************************
+TypeScriptCommonTypes.targets
+
+This file contains project items for common TypeScript declaration files.
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<SolutionTypeDefinitions>$(WSRoot)\target\$(BuildType)\$(BuildTarget)\TypeDefinitions</SolutionTypeDefinitions>
+		<PlatformTypeDefinitions>$(WSRoot)\references\internal\TypeDefinitions</PlatformTypeDefinitions>
+		<ExternalTypeDefinitions>$(WSRoot)\references\external\TypeDefinitions</ExternalTypeDefinitions>
+		<PackageTypeDefinitions>$(PKG_CRM_CLIENTAPITYPINGS)\clientapi</PackageTypeDefinitions>
+	</PropertyGroup>
+	<ItemGroup>
+		<TypeScriptCommonFile Include="$(PackageTypeDefinitions)\XrmClientApi.d.ts">
+			<Link>TypeDefinitions\XrmClientApi.d.ts</Link>
+		</TypeScriptCommonFile>
+		<TypeScriptCommonFile Include="$(PackageTypeDefinitions)\XrmClientApiDeprecated.d.ts">
+			<Link>TypeDefinitions\XrmClientApiDeprecated.d.ts</Link>
+		</TypeScriptCommonFile>
+		<TypeScriptCommonFile Include="$(PlatformTypeDefinitions)\XrmClientApi\XrmClientApiGap.d.ts">
+			<Link>TypeDefinitions\XrmClientApiGap.d.ts</Link>
+		</TypeScriptCommonFile>
+		<TypeScriptCommonFile Include="$(PlatformTypeDefinitions)\XrmClientApi\XrmClassicWebClientApi.d.ts">
+			<Link>TypeDefinitions\XrmClassicWebClientApi.d.ts</Link>
+		</TypeScriptCommonFile>
+		<TypeScriptCommonFile Include="$(PlatformTypeDefinitions)\XrmClientApi\XrmInternalApi.d.ts">
+			<Link>TypeDefinitions\XrmInternalApi.d.ts</Link>
+		</TypeScriptCommonFile>
+		<TypeScriptCommonFile Include="$(ExternalTypeDefinitions)\lib.es6.d.ts">
+			<Link>TypeDefinitions\lib.es6.d.ts</Link>
+		</TypeScriptCommonFile>
+		<TypeScriptCommonFile Include="$(ExternalTypeDefinitions)\whatwg-fetch.d.ts">
+			<Link>TypeDefinitions\whatwg-fetch.d.ts</Link>
+		</TypeScriptCommonFile>
+	</ItemGroup>
+</Project>

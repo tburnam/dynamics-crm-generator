@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<PluginAssemblyFolder>$(WSRoot)\target\$(BuildType)\$(BuildPlatform)\$(MSBuildProjectName)\PluginAssembly</PluginAssemblyFolder>
+	</PropertyGroup>
+	<ItemGroup>
+		<PluginAssemblyComponents Include="$(PKG_XRMAPP_SOLUTIONCOMMON)\lib\PluginAssembly\**\*" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectToBuild Include="$(PluginAssemblyFolder)\PluginAssembly.csproj">
+			<Properties>
+				PluginProjectDirectory=$(MSBuildProjectDirectory);
+				PluginProjectName=$(MSBuildProjectName);
+				PluginAssemblyName=$(RootNamespace);
+				SystemConverted=$(SystemConverted);
+				ExcludedPluginAssemblies=$(ExcludedAssemblies)
+			</Properties>
+		</ProjectToBuild>
+	</ItemGroup>
+	<Target Name="BeforeBuild">
+		<Copy SourceFiles="@(PluginAssemblyComponents)" DestinationFolder="$(PluginAssemblyFolder)\%(RecursiveDir)" />
+	</Target>
+	<Target Name="AfterBuild">
+		<MSBuild Projects="@(ProjectToBuild)" />
+	</Target>
+</Project>

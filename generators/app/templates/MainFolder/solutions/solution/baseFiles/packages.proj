@@ -1,0 +1,12 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+		<ProjectToBuild Include="PVSPackage\<%= solutionName %>PVS.csproj" />
+  </ItemGroup>
+	<Target Name="Clean">
+		<MSBuild Projects="@(ProjectToBuild)" Targets="Clean" />
+	</Target>
+	<Target Name="Build">
+		<MSBuild Projects="@(ProjectToBuild)" Targets="CreatePDPackageZip" />
+		<MSBuild Projects="@(ProjectToBuild)" Targets="CreatePVSPackageZip" />
+	</Target>
+</Project>

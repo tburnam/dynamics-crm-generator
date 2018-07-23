@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--This target sets the version of Solution.xml using git-drift revision strategy-->
+  <Target Name="SetVersion" BeforeTargets="AfterBuild" >
+    <Message Text="Setting Solution Version" Importance="High" />
+    <Exec command="powershell -Command &quot;&amp;{Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned; $(PKG_XRMAPP_TOOLS)\tools\commands\Set-SolutionVersion.ps1 -XMLFile $(SolutionFolder)\Other\Solution.xml -UpdateVSOBuild true }&quot;"
+      Condition="'$(ResolveSolutionVersion)'=='true'" />
+  </Target>
+</Project>

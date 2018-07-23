@@ -1,0 +1,12 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(AltWSRoot)\build\include\BinPlaceSolutions.targets" />
+  <ItemGroup>
+    <ProjectToBuild Include="<%= solutionName %>\solutions.proj" />
+  </ItemGroup>
+  <Target Name="Clean">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Clean" />
+  </Target>
+  <Target Name="Build">
+    <MSBuild Projects="@(ProjectToBuild)" BuildInParallel="true" />
+  </Target>
+</Project>

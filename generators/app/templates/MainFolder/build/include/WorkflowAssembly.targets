@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<WorkflowAssemblyFolder>$(WSRoot)\target\$(BuildType)\$(BuildPlatform)\$(MSBuildProjectName)\WorkflowAssembly</WorkflowAssemblyFolder>
+	</PropertyGroup>
+	<ItemGroup>
+		<WorkflowAssemblyComponents Include="$(PKG_XRMAPP_SOLUTIONCOMMON)\lib\WorkflowAssembly\**\*" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectToBuild Include="$(WorkflowAssemblyFolder)\WorkflowAssembly.csproj">
+			<Properties>
+				WorkflowProjectDirectory=$(MSBuildProjectDirectory);
+				WorkflowProjectName=$(MSBuildProjectName);
+				WorkflowAssemblyName=$(RootNamespace);
+        SystemConverted=$(SystemConverted);
+				ExcludedWorkflowAssemblies=$(ExcludedAssemblies)
+			</Properties>
+		</ProjectToBuild>
+	</ItemGroup>
+	<Target Name="BeforeBuild">
+		<Copy SourceFiles="@(WorkflowAssemblyComponents)" DestinationFolder="$(WorkflowAssemblyFolder)\%(RecursiveDir)" />
+	</Target>
+	<Target Name="AfterBuild">
+		<MSBuild Projects="@(ProjectToBuild)" />
+	</Target>
+</Project>

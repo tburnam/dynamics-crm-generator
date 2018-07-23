@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Microsoft.PowerApps.Solutions.<%= solutionName %></id>
+    <version>$version$</version>
+    <authors>Microsoft Corporation</authors>
+    <owners><%= creators %></owners>
+    <!-- <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl> -->
+    <projectUrl>https://dynamicscrm.visualstudio.com/OneCRM/_git/CRM.Solutions.<%= solutionName %>?version=GBmaster</projectUrl>
+    <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Microsoft PowerApps Solution Checker solution</description>
+    <releaseNotes>Includes initial release of the <%= solutionName %> first-party solution package.
+    </releaseNotes>
+    <copyright>Copyright ©2018 Microsoft Corporation</copyright>
+    <tags>PowerApps CDS XRM <%= solutionName %> </tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+	<files>
+		<file src="..\..\drop\$buildconfiguration$\$buildplatform$\Solutions\*.*" target="tools\net452\Solutions" />
+		<file src="..\..\drop\$buildconfiguration$\$buildplatform$\PDPackages\*.*" target="tools\net452\PDPackages" />
+    <file src="..\..\drop\$buildconfiguration$\$buildplatform$\PVSPackages\*.*" target="tools\net452\PVSPackages" />
+		<file src="..\..\drop\$buildconfiguration$\$buildplatform$\Tests\**" target="tools\net452\Tests" />
+		<file src="..\..\solutions\TypeDefinitions\**" target="tools\net452\TypeDefinitions" />
+  </files>
+</package>

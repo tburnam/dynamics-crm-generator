@@ -1,0 +1,78 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(AltWSRoot)\build\include\XRMSolutions.targets" Condition="Exists('$(AltWSRoot)\build\include\XRMSolutions.targets')" />
+	
+	<Choose>
+		<When Condition="('$(DropInConfigurationFolder)' == 'true')">
+			<PropertyGroup>
+				<PluginsOutputPath>$(AltWSRoot)\drop\$(BuildConfiguration)\$(BuildPlatform)\Plugins</PluginsOutputPath>
+				<WorkflowsOutputPath>$(AltWSRoot)\drop\$(BuildConfiguration)\$(BuildPlatform)\Workflows</WorkflowsOutputPath>
+				<SolutionsOutputPath>$(AltWSRoot)\drop\$(BuildConfiguration)\$(BuildPlatform)\Solutions</SolutionsOutputPath>
+				<PDPackagesOutputPath>$(AltWSRoot)\drop\$(BuildConfiguration)\$(BuildPlatform)\PDPackages</PDPackagesOutputPath>
+				<PVSPackagesOutputPath>$(AltWSRoot)\drop\$(BuildConfiguration)\$(BuildPlatform)\PVSPackages</PVSPackagesOutputPath>
+				<TestsOutputPath>$(AltWSRoot)\drop\$(BuildConfiguration)\$(BuildPlatform)\Tests</TestsOutputPath>
+				
+				<Debug_PluginsOutputPath>$(AltWSRoot)\drop\debug\$(BuildPlatform)\Plugins</Debug_PluginsOutputPath>
+				<Debug_WorkflowsOutputPath>$(AltWSRoot)\drop\debug\$(BuildPlatform)\Workflows</Debug_WorkflowsOutputPath>
+				<Debug_SolutionsOutputPath>$(AltWSRoot)\drop\debug\$(BuildPlatform)\Solutions</Debug_SolutionsOutputPath>
+				<Debug_PDPackagesOutputPath>$(AltWSRoot)\drop\debug\$(BuildPlatform)\PDPackages</Debug_PDPackagesOutputPath>
+				<Debug_PVSPackagesOutputPath>$(AltWSRoot)\drop\debug\$(BuildPlatform)\PVSPackages</Debug_PVSPackagesOutputPath>
+				<Debug_TestsOutputPath>$(AltWSRoot)\drop\debug\$(BuildPlatform)\Tests</Debug_TestsOutputPath>
+			</PropertyGroup>
+		</When>
+		<Otherwise>
+			<PropertyGroup>
+				<PluginsOutputPath>$(AltWSRoot)\drop\Plugins</PluginsOutputPath>
+				<WorkflowsOutputPath>$(AltWSRoot)\drop\Workflows</WorkflowsOutputPath>
+				<SolutionsOutputPath>$(AltWSRoot)\drop\Solutions</SolutionsOutputPath>
+				<PDPackagesOutputPath>$(AltWSRoot)\drop\PDPackages</PDPackagesOutputPath>
+				<PVSPackagesOutputPath>$(AltWSRoot)\drop\PVSPackages</PVSPackagesOutputPath>
+				<TestsOutputPath>$(AltWSRoot)\drop\Tests</TestsOutputPath>
+				
+				<Debug_PluginsOutputPath>$(PluginsOutputPath)</Debug_PluginsOutputPath>
+				<Debug_WorkflowsOutputPath>$(WorkflowsOutputPath)</Debug_WorkflowsOutputPath>
+				<Debug_SolutionsOutputPath>$(SolutionsOutputPath)</Debug_SolutionsOutputPath>
+				<Debug_PDPackagesOutputPath>$(PDPackagesOutputPath)</Debug_PDPackagesOutputPath>
+				<Debug_PVSPackagesOutputPath>$(PVSPackagesOutputPath)</Debug_PVSPackagesOutputPath>
+				<Debug_TestsOutputPath>$(TestsOutputPath)</Debug_TestsOutputPath>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
+
+  <PropertyGroup>
+    <TypeDefinitionOutputPath>$(AltWSRoot)\solutions\TypeDefinitions</TypeDefinitionOutputPath>
+  </PropertyGroup>
+  
+	<Target Name="ExportPackagedSolutions" BeforeTargets="Build">
+		<Message text="Solution Binplacing started: $([System.DateTime]::Now)" Importance="High" />
+		<MakeDir Directories="$(SolutionOutputPath)" Condition="!Exists('$(SolutionOutputPath)')" />
+		<ItemGroup>
+			<!-- add solution entries to binplace here -->
+      
+      <!-- retail solutions and packages -->
+     
+      <!-- debug solutions and packages -->
+      
+		</ItemGroup>
+		
+		<!-- retail artifacts -->
+		<Copy SourceFiles="@(RetailPlugins)" DestinationFolder="$(PluginsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(RetailWorkflows)" DestinationFolder="$(WorkflowsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(RetailSolutions)" DestinationFolder="$(SolutionsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(RetailPDPackages)" DestinationFolder="$(PDPackagesOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(RetailPVSPackages)" DestinationFolder="$(PVSPackagesOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(RetailTests)" DestinationFolder="$(TestsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+    
+		<!-- debug artifacts -->
+		<Copy SourceFiles="@(DebugPlugins)" DestinationFolder="$(Debug_PluginsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(DebugWorkflows)" DestinationFolder="$(Debug_WorkflowsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(DebugSolutions)" DestinationFolder="$(Debug_SolutionsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(DebugPDPackages)" DestinationFolder="$(Debug_PDPackagesOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(DebugPVSPackages)" DestinationFolder="$(Debug_PVSPackagesOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		<Copy SourceFiles="@(DebugTests)" DestinationFolder="$(Debug_TestsOutputPath)" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+		
+    <!-- type definition artifacts -->
+    <Copy SourceFiles="@(RetailTypeDefinitions)" DestinationFiles="@(RetailTypeDefinitions->'$(TypeDefinitionOutputPath)\%(RecursiveDir)%(Filename)%(Extension)')" Retries="20" SkipUnchangedFiles="true" RetryDelayMilliseconds="1000" ContinueOnError="true" />
+    
+		<Message text="Solution Binplacing completed: $([System.DateTime]::Now)" Importance="High" />
+	</Target>
+</Project>
