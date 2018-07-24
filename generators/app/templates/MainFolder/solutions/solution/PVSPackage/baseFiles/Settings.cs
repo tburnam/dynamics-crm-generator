@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.PowerApps.SolutionChecker.PVSPackage
+namespace Microsoft.PowerApps.<%= solutionName %>.PVSPackage
 {
     internal class Constants
     {

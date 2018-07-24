@@ -6,9 +6,9 @@
     <!--<ProjectTypeGuids>{4B952A0A-A664-46EC-8D7E-51EBEA2E954D};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>-->
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <NOTARGET>true</NOTARGET>
-    <SolutionProjectNamePrefix>SolutionChecker</SolutionProjectNamePrefix>
-    <SolutionFileNamePrefix>msdyn_SolutionChecker</SolutionFileNamePrefix>
-    <ApplicationFolder>$(WSRoot)\solutions\SolutionChecker</ApplicationFolder>
+    <SolutionProjectNamePrefix><%= solutionName %></SolutionProjectNamePrefix>
+    <SolutionFileNamePrefix>msdyn_<%= solutionName %></SolutionFileNamePrefix>
+    <ApplicationFolder>$(WSRoot)\solutions\<%= solutionName %></ApplicationFolder>
     <SolutionFolder>$(ApplicationFolder)\Solution</SolutionFolder>
     <PluginMapFile>$(ApplicationFolder)\packageMap.xml</PluginMapFile>
     <SystemConverted>false</SystemConverted>
