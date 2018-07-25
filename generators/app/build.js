@@ -103,7 +103,7 @@ const writeSolutionsFolder = generator => {
   generator.fs.copyTpl(
     generator.templatePath('MainFolder/solutions/solution/baseFiles'),
     generator.destinationPath(solutionFolderPath),
-    { solutionName: generator.props.solutionName }
+    { solutionName: generator.props.solutionName, pluginFlag: generator.props.pluginFlag }
   );
 
   // Copy sln file
@@ -112,7 +112,7 @@ const writeSolutionsFolder = generator => {
     generator.destinationPath(
       solutionFolderPath + '/' + generator.props.solutionName + '.sln'
     ),
-    { solutionName: generator.props.solutionName }
+    { solutionName: generator.props.solutionName, pluginFlag: generator.props.pluginFlag }
   );
 
   // Build /Package folder
@@ -190,7 +190,7 @@ const writeSolutionsFolder = generator => {
   generator.fs.copyTpl(
     generator.templatePath('MainFolder/solutions/solution/Solution/Other'),
     generator.destinationPath(solutionFolderPath + '/Solution/Other'),
-    { solutionName: generator.props.solutionName }
+    { solutionName: generator.props.solutionName, pluginFlag: generator.props.pluginFlag }
   );
 
   // Copy /Solution csproj
@@ -209,7 +209,79 @@ const writeSolutionsFolder = generator => {
   );
 };
 
+const writePlugin = generator => {
+  const solutionFolderPath =
+    generator.props.solutionName + '/solutions/' + generator.props.solutionName;
+
+  const solutionAssemblyPath =
+    solutionFolderPath +
+    '/Solution/PluginAssemblies/' +
+    generator.props.solutionName +
+    '-' +
+    'SDK_GUID/';
+
+  // Build /Plugins folder
+  mkdirp.sync(solutionFolderPath + '/Plugins');
+
+  // Build /Plugins/Plugins folder
+  mkdirp.sync(solutionFolderPath + '/Plugins/Plugins');
+
+  // Build SDKMessageProcessingSteps folder
+  mkdirp.sync(solutionFolderPath + '/Solution/SDKMessageProcessingSteps');
+
+  // Build PluginAssemblies/SOLUTION_NAME-SDK_GUID/ folder
+  mkdirp.sync(solutionAssemblyPath);
+
+  // Copy dll.data.xml file for PluginAssemblies
+  generator.fs.copyTpl(
+    generator.templatePath(
+      'MainFolder/solutions/solution/Solution/PluginAssemblies/SOLUTION_NAMEPlugins.dll.data.xml'
+    ),
+    generator.destinationPath(
+      solutionAssemblyPath + generator.props.solutionName + 'Plugins.dll.data.xml'
+    ),
+    { solutionName: generator.props.solutionName }
+  );
+
+  // Copy base files to /Plugins folder
+  generator.fs.copyTpl(
+    generator.templatePath('MainFolder/solutions/solution/Plugins/baseFiles'),
+    generator.destinationPath(solutionFolderPath + '/Plugins/'),
+    { solutionName: generator.props.solutionName }
+  );
+
+  // Copy Properties directory/files to /Plugins folder
+  generator.fs.copyTpl(
+    generator.templatePath('MainFolder/solutions/solution/Plugins/Properties'),
+    generator.destinationPath(solutionFolderPath + '/Plugins/'),
+    { solutionName: generator.props.solutionName }
+  );
+
+  // Copy Plugins.sln to /Plugins folder
+  generator.fs.copyTpl(
+    generator.templatePath(
+      'MainFolder/solutions/solution/Plugins/SOLUTION_NAMEPlugins.sln'
+    ),
+    generator.destinationPath(
+      solutionFolderPath + '/Plugins/' + generator.props.solutionName + 'Plugins.sln'
+    ),
+    { solutionName: generator.props.solutionName }
+  );
+
+  // Copy Plugins.csproj to /Plugins folder
+  generator.fs.copyTpl(
+    generator.templatePath(
+      'MainFolder/solutions/solution/Plugins/SOLUTION_NAMEPlugins.csproj'
+    ),
+    generator.destinationPath(
+      solutionFolderPath + '/Plugins/' + generator.props.solutionName + 'Plugins.csproj'
+    ),
+    { solutionName: generator.props.solutionName }
+  );
+};
+
 module.exports.writeMainFolder = writeMainFolder;
 module.exports.writeBuildFolder = writeBuildFolder;
 module.exports.writeScriptsInitFolder = writeScriptsInitFolder;
 module.exports.writeSolutionsFolder = writeSolutionsFolder;
+module.exports.writePlugin = writePlugin;

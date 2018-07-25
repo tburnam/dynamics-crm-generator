@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Mapping>
   <!-- Match specific named files to an alternate folder -->
+  <% if (pluginFlag == true) { %><FileToFile map="PluginAssemblies/<%= solutionName %>Plugins-738e7ceb-8b93-4602-acb2-7885f7496c3b/<%= solutionName %>Plugins.dll" to="%WSRoot%\drop\%BuildConfiguration%\%BuildPlatform%\Plugins\<%= solutionName %>Plugins.dll" /><% } %>
 </Mapping>

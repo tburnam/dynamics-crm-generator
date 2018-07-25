@@ -2,6 +2,8 @@
   <ItemGroup>
 		<ProjectToBuild Include="Solution\<%= solutionName %>.csproj" />
 		<ProjectToBuild Include="PVSPackage\<%= solutionName %>PVS.csproj" />
+    <% if (pluginFlag == true) { %><ProjectToBuild Include="..\..\Plugins\<%= solutionName %>Plugins.csproj" /><% } %>
+
   </ItemGroup>
 	<Target Name="Clean">
 		<MSBuild Projects="@(ProjectToBuild)" Targets="Clean" />

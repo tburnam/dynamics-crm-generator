@@ -1,0 +1,22 @@
+		
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{60F0968B-F42E-4165-A4E2-9BF225A81BBA}") = "<%= solutionName %>Plugins", "<%= solutionName %>Plugins.csproj", "{48C0C98A-C986-4ECF-A11F-22457AB0692B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48C0C98A-C986-4ECF-A11F-22457AB0692B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C0C98A-C986-4ECF-A11F-22457AB0692B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C0C98A-C986-4ECF-A11F-22457AB0692B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C0C98A-C986-4ECF-A11F-22457AB0692B}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginAssembly FullName="<%= solutionName %>.Plugins, Version=9.0.0.1, Culture=neutral, PublicKeyToken=9164b73ced0dcbd5" PluginAssemblyId="738e7ceb-8b93-4602-acb2-7885f7496c3b" CustomizationLevel="1">
+  <IsolationMode>1</IsolationMode>
+  <SourceType>0</SourceType>
+  <IntroducedVersion>9.0</IntroducedVersion>
+  <FileName>/PluginAssemblies/<%= solutionName %>Plugins-738e7ceb-8b93-4602-acb2-7885f7496c3b/<%= solutionName %>Plugins.dll</FileName>
+  <PluginTypes>
+  </PluginTypes>
+</PluginAssembly>

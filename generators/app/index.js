@@ -36,6 +36,13 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props;
+
+      // Process flags
+      this.props.pluginFlag = this.props.options.indexOf('Plugins') > -1;
+      this.props.webResourceFlag = this.props.options.indexOf('Workflows') > -1;
+      this.props.workflowFlag = this.props.options.indexOf('Web Resources') > -1;
+
+      // TODO: Debug step
       console.log(props);
     });
   }
@@ -46,6 +53,10 @@ module.exports = class extends Generator {
     build.writeBuildFolder(this);
     build.writeScriptsInitFolder(this);
     build.writeSolutionsFolder(this);
+
+    if (this.props.pluginFlag === true) {
+      build.writePlugin(this);
+    }
   }
 
   install() {
